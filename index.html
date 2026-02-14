@@ -11,12 +11,14 @@
     background: #ffe6e6;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-start;
     align-items:center;
-    height:100vh;
-    overflow:hidden;
+    min-height:100vh;
+    overflow-x:hidden;
     text-align:center;
     padding: 20px;
+    box-sizing:border-box;
+    position:relative;
   }
 
   h1 {
@@ -40,13 +42,24 @@
     color:#c2185b;
   }
 
+  .bottom-space {
+    height: 200px; /* space for easier scroll */
+  }
+
+  @media (max-width: 480px) {
+    h1 { font-size:2rem; }
+    p { font-size:1rem; }
+    .signature { font-size:1.1rem; }
+  }
+
+  /* hearts */
   .heart {
     position:absolute;
+    bottom:0;
     width:20px;
     height:20px;
     background:red;
     transform: rotate(-45deg);
-    animation: floatUp 4s linear infinite;
   }
   .heart:before, .heart:after {
     content:'';
@@ -61,13 +74,26 @@
 
   @keyframes floatUp {
     0% { transform: translateY(0) rotate(-45deg); opacity:1; }
-    100% { transform: translateY(-600px) rotate(-45deg); opacity:0; }
+    100% { transform: translateY(-1000px) rotate(-45deg); opacity:0; }
   }
 
   @keyframes fadeIn {
     from { opacity:0; transform: translateY(-20px);}
     to { opacity:1; transform: translateY(0);}
   }
+
+  /* container hearts supaya scroll aman */
+  #heart-container {
+    pointer-events: none;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow: hidden;
+    z-index: 999;
+  }
+
 </style>
 </head>
 <body>
@@ -88,20 +114,26 @@ I love you more than words can ever express. 💖
 
 <div class="signature">— Your Husband</div>
 
+<div class="bottom-space"></div>
+
+<!-- hearts container -->
+<div id="heart-container"></div>
+
 <script>
-  // automatically create hearts on page load
-  createHearts(30);
-  function createHearts(num){
-    for(let i=0;i<num;i++){
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = Math.random() * window.innerWidth + 'px';
-      heart.style.animationDuration = (2 + Math.random() * 3) + 's';
-      heart.style.width = heart.style.height = (10 + Math.random()*20)+'px';
-      document.body.appendChild(heart);
-      setTimeout(()=>heart.remove(),5000);
-    }
+  function createHeart(){
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    const container = document.getElementById('heart-container');
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    const size = 10 + Math.random() * 20;
+    heart.style.width = heart.style.height = size + 'px';
+    heart.style.animation = `floatUp ${3 + Math.random()*3}s linear forwards`;
+    container.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
   }
+
+  // generate hearts every 400ms
+  setInterval(createHeart, 400);
 </script>
 
 </body>
