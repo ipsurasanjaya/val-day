@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To My Dearest Wife, Dwi Mohini ❤️</title>
+<style>
+  body {
+    margin:0;
+    font-family: 'Arial', sans-serif;
+    background: #ffe6e6;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+    text-align:center;
+    padding: 20px;
+  }
+
+  h1 {
+    color:#c2185b;
+    font-size:2.5rem;
+    margin-bottom:20px;
+    animation: fadeIn 2s ease-in-out;
+  }
+
+  p {
+    font-size:1.2rem;
+    color:#880e4f;
+    line-height:1.6;
+    margin-bottom:20px;
+  }
+
+  .signature {
+    font-size:1.3rem;
+    margin-top:20px;
+    font-weight:bold;
+    color:#c2185b;
+  }
+
+  .heart {
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:red;
+    transform: rotate(-45deg);
+    animation: floatUp 4s linear infinite;
+  }
+  .heart:before, .heart:after {
+    content:'';
+    position:absolute;
+    width:20px;
+    height:20px;
+    background:red;
+    border-radius:50%;
+  }
+  .heart:before { top:-10px; left:0; }
+  .heart:after { top:0; left:10px; }
+
+  @keyframes floatUp {
+    0% { transform: translateY(0) rotate(-45deg); opacity:1; }
+    100% { transform: translateY(-600px) rotate(-45deg); opacity:0; }
+  }
+
+  @keyframes fadeIn {
+    from { opacity:0; transform: translateY(-20px);}
+    to { opacity:1; transform: translateY(0);}
+  }
+</style>
+</head>
+<body>
+
+<h1>To My Dearest Wife, Dwi Mohini ❤️</h1>
+
+<p>
+Happy Valentine’s Day! I’m truly sorry for the times I’ve made you sad or brought tears to your eyes.  
+Thank you for all the effort you put in every day—cooking, cleaning, taking care of our home, and being patient even when you’re tired.  
+Thank you for always supporting me, both emotionally and financially, to make our home a place of stability and love.  
+Thank you for always striving to be better every day—it inspires me so much.  
+I honestly can’t imagine my life without you.  
+You are my heart, my home, and my greatest blessing.  
+I love you more than words can ever express. 💖
+</p>
+
+<p>Hope you like the chocolate, hope you are happy! 🍫💞</p>
+
+<div class="signature">— Your Husband</div>
+
+<script>
+  // automatically create hearts on page load
+  createHearts(30);
+  function createHearts(num){
+    for(let i=0;i<num;i++){
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = (2 + Math.random() * 3) + 's';
+      heart.style.width = heart.style.height = (10 + Math.random()*20)+'px';
+      document.body.appendChild(heart);
+      setTimeout(()=>heart.remove(),5000);
+    }
+  }
+</script>
+
+</body>
+</html>
