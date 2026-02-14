@@ -52,29 +52,19 @@
     .signature { font-size:1.1rem; }
   }
 
-  /* hearts */
-  .heart {
+  /* container hearts (photos) */
+  .photo {
     position:absolute;
     bottom:0;
-    width:20px;
-    height:20px;
-    background:red;
-    transform: rotate(-45deg);
+    width:40px;  /* bisa diubah sesuai ukuran */
+    height:40px; /* bisa diubah sesuai ukuran */
+    border-radius:50%; /* optional, jadi bulat */
+    object-fit:cover;
   }
-  .heart:before, .heart:after {
-    content:'';
-    position:absolute;
-    width:20px;
-    height:20px;
-    background:red;
-    border-radius:50%;
-  }
-  .heart:before { top:-10px; left:0; }
-  .heart:after { top:0; left:10px; }
 
   @keyframes floatUp {
-    0% { transform: translateY(0) rotate(-45deg); opacity:1; }
-    100% { transform: translateY(-1000px) rotate(-45deg); opacity:0; }
+    0% { transform: translateY(0); opacity:1; }
+    100% { transform: translateY(-1000px); opacity:0; }
   }
 
   @keyframes fadeIn {
@@ -82,7 +72,6 @@
     to { opacity:1; transform: translateY(0);}
   }
 
-  /* container hearts supaya scroll aman */
   #heart-container {
     pointer-events: none;
     position: fixed;
@@ -101,40 +90,41 @@
 <h1>To My Dearest Wife, Dwi Mohini ❤️</h1>
 
 <p>
-Happy Valentine’s Day Sayang! I’m truly sorry for the times I’ve made you sad or brought tears to your eyes.  
+Happy Valentine’s Day! I’m truly sorry for the times I’ve made you sad or brought tears to your eyes.  
 Thank you for all the effort you put in every day—cooking, cleaning, taking care of our home, and being patient even when you’re tired.  
 Thank you for always supporting me, both emotionally and financially, to make our home a place of stability and love.  
 Thank you for always striving to become a better person every day—it inspires me so much.  
 I honestly cannot imagine my life without you.  
-You are my heart, my home, and my greatest blessing.
-I hope we can always be together, side by side, for all the days to come.  
+You are my heart, my home, and my greatest blessing.  
 I love you more than words could ever express. 💖  
+I hope we can always be together, side by side, for all the days to come.
 </p>
 
-<p>Hope you like the chocolate, hope you are happy! 🍫💞</p>
+<p>Hope you enjoy the chocolate and that it brings you happiness! 🍫💞</p>
 
 <div class="signature">— Your Husband</div>
-
 <div class="bottom-space"></div>
 
-<!-- hearts container -->
+<!-- photo container -->
 <div id="heart-container"></div>
 
 <script>
-  function createHeart(){
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    const container = document.getElementById('heart-container');
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    const size = 10 + Math.random() * 20;
-    heart.style.width = heart.style.height = size + 'px';
-    heart.style.animation = `floatUp ${3 + Math.random()*3}s linear forwards`;
-    container.appendChild(heart);
-    setTimeout(()=>heart.remove(),6000);
+  const photoSrc = 'my-love.png'; // ganti dengan path foto kamu
+
+  function createPhoto(){
+    const photo = document.createElement('img');
+    photo.className = 'photo';
+    photo.src = photoSrc;
+    photo.style.left = Math.random() * window.innerWidth + 'px';
+    const size = 30 + Math.random() * 40; // ukuran acak
+    photo.style.width = photo.style.height = size + 'px';
+    photo.style.animation = `floatUp ${3 + Math.random()*3}s linear forwards`;
+    document.getElementById('heart-container').appendChild(photo);
+    setTimeout(()=>photo.remove(),6000);
   }
 
-  // generate hearts every 400ms
-  setInterval(createHeart, 400);
+  // generate photo every 500ms
+  setInterval(createPhoto, 500);
 </script>
 
 </body>
